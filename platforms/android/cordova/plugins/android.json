@@ -1,0 +1,26 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {
+            "res/xml/config.xml": {
+                "parents": {
+                    "/*": [
+                        {
+                            "xml": "<feature name=\"Excel\"><param name=\"android-package\" value=\"com.yrtech.excel.Excel\" /></feature>",
+                            "count": 1
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "installed_plugins": {
+        "com.yrtech.excel": {
+            "PACKAGE_NAME": "com.yrtech.yfnd"
+        }
+    },
+    "dependent_plugins": {}
+}

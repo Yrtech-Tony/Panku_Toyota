@@ -1,0 +1,95 @@
+﻿<ion-view view-title="在库不在系统" cache-view="false">
+    <ion-nav-buttons side="secondary">
+        <button class="button" ng-click="btnSaveClick()">
+            保存
+        </button>
+    </ion-nav-buttons>
+    <ion-content>
+        <div class="list">
+            <label class="item item-input">
+                <span class="input-label">VIN号码</span>
+                <input type="text" placeholder="输入VIN号码" ng-model="viewState.vinCode" ng-change="vinCodeChanged();">
+            </label>
+            <label class="item item-input item-select">
+                <span class="input-label">车型</span>
+                <select ng-model="viewState.carType" ng-options="item.CarTypeName for item in carTypeList"></select>
+            </label>
+            <label class="item item-input item-select">
+                <span class="input-label">备注</span>
+                <select ng-model="viewState.note" ng-options="item.NoteName for item in noteList"></select>
+            </label>
+            <label class="item item-input" ng-show="viewState.note.NoteName == '其他（手工填写）'">
+                <span class="input-label">手工填写</span>
+                <input type="text" ng-model="viewState.customNoteName" />
+            </label>
+            <div class="item row">
+                <div class="col col-50" style="text-align:center">
+                    <input type="button" class="button button-positive" value="VIN号码照片" ng-click="vinPicture()" />
+                </div>
+                <div class="col" style="text-align:center">
+                    <input type="button" class="button button-positive" value="车尾照片" ng-click="carPicture()" />
+                </div>
+            </div>
+            <div class="item row item-input">
+                <div class="col col-50" style="text-align:center">
+                    <img style="width:100%;max-width:300px;" onload='CheckProperty(this)' ng-src="{{viewState.vin_img_uri}}" />
+                </div>
+                <div class="col" style="text-align:center">
+                    <img style="width:100%;max-width:300px;" onload='CheckProperty(this)' ng-src="{{viewState.car_img_uri}}" />
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col" style="text-align:center">
+                    <input type="button" class="button button-positive" value="销售发票照片" ng-click="vinfpPicture()" />
+                </div>
+            </div>
+            <div class="item row item-input">
+                <div class="col" style="text-align:center">
+                    <img style="width:100%;max-width:300px;" onload='CheckProperty(this)' ng-src="{{viewState.vinfp_img_uri}}" />
+                </div>
+            </div>
+        </div>
+        <script>
+            /** 检测图像属性 */
+            function CheckProperty(obj) {
+                var ImgObj = new Image();
+                ImgObj.src = obj.src;
+                FileObj = ImgObj;
+                /*
+                if(ImgObj.readyState!="complete") //如果图像是未加载完成进行循环检测
+                {
+                   setTimeout("CheckProperty(FileObj)",500);
+                }
+
+                ImgFileSize=Math.round(ImgObj.fileSize/1024*100)/100;//取得图片文件的大小
+                */
+                //取得图片的宽度
+                ImgWidth = ImgObj.width
+                //取得图片的高度
+                ImgHeight = ImgObj.height;
+                cut(obj, ImgWidth, ImgHeight);
+                setCenter(obj);
+            }
+            /** 设置图片层的上一层居中 */
+            function setCenter(obj) {
+                if (navigator.userAgent.indexOf("MSIE") <= 0) {
+                    obj.parentNode.style.display = 'table-cell';
+                } else {
+                    obj.parentNode.style.display = 'block';
+                    objobj.parentNode.style.fontSize = obj.parentNode.height * 0.873;
+                    obj.parentNode.style.fontFamily = 'Arial';
+                }
+                obj.parentNode.style.verticalAlign = 'middle';
+                obj.parentNode.style.textAlign = 'center';
+            }
+            /** 裁剪图片 */
+            function cut(obj, width, height) {
+                if (obj.width > obj.height) {
+                    obj.width = width * obj.height / height;
+                } else {
+                    obj.height = height * obj.width / width;
+                }
+            }
+        </script>
+    </ion-content>
+</ion-view>

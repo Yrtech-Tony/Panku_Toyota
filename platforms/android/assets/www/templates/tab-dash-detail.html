@@ -1,0 +1,86 @@
+﻿<ion-view view-title="VIN拍照" cache-view="false">
+    <ion-nav-buttons side="secondary">
+        <button class="button" ng-click="btnSaveClick()">
+            保存
+        </button>
+    </ion-nav-buttons>
+    <ion-content>
+        <div class="list">
+            <label class="item item-input">
+                <span class="input-label">VIN号码</span>
+                <span>{{viewState.vinCode}}</span>
+            </label>
+            <div class="buttons">
+                <button class="button button-full button-calm" ng-click="modal.show()">选择备注</button>
+            </div>
+            <label class="item item-input" >
+                <span class="input-label">备注</span>
+                <input type="text" ng-model="viewState.remark" />
+            </label>
+
+            <!--<label class="item item-input item-select">
+                <span class="input-label">备注</span>
+                <select ng-model="viewState.note" ng-options="item.NoteName for item in noteList"></select>
+            </label>-->
+            <!--<label class="item item-input">
+                <span class="input-label">VIN照片</span>
+                <input type="button" class="button button-positive" ng-click="vinPicture();" value="拍照" />
+            </label>
+            <label class="item item-image">
+                <img id="imgVIN" style="max-width:300px;" ng-src="{{viewState.vin_img_uri}}" />
+            </label>-->
+            <div class="item row">
+                <div class="col col-50" style="text-align:center">
+                    <input type="button" class="button button-positive item-text-wrap" value="发票+收据\打款凭证\合同\订单任一" ng-click="vin1Picture()" />
+                </div>
+                <div class="col" style="text-align:center">
+                    <input type="button" class="button button-positive item-text-wrap" value="用户确认表原件+行驶证+身份证合照" ng-click="vin2Picture()" />
+                </div>
+            </div>
+            <div class="item row item-input">
+                <div class="col col-100" style="text-align:center">
+                    <img style="width:100%;max-width:150px;" ng-src="{{viewState.vin1_img_uri}}" />
+                </div>
+                <div class="col" style="text-align:center">
+                    <img style="width:100%;max-width:150px;" ng-src="{{viewState.vin2_img_uri}}" />
+                </div>
+            </div>
+            <!--<div class="item row">
+                <div class="col col-50" style="text-align:center">
+                    <input type="button" class="button button-positive" value="身份证行驶证合照" ng-click="vin3Picture()" />
+                </div>
+                <div class="col" style="text-align:center">
+                    <input type="button" class="button button-positive" value="收据,打款凭证,合同,订单" ng-click="vin4Picture()" />
+                </div>
+            </div>
+            <div class="item row item-input">
+                <div class="col col-100" style="text-align:center">
+                    <img style="width:100%;max-width:150px;" ng-src="{{viewState.vin3_img_uri}}" />
+                </div>
+                <div class="col" style="text-align:center">
+                    <img style="width:100%;max-width:150px;" ng-src="{{viewState.vin4_img_uri}}" />
+                </div>
+            </div>-->
+        </div>
+    </ion-content>
+</ion-view>
+<script id="templates/modal.html" type="text/ng-template">
+    <ion-modal-view>
+        <ion-header-bar class="bar bar-header bar-positive">
+            <h1 class="title">备注选择</h1>
+            <button class="button button-clear button-primary" ng-click="remarkSelect()">保存</button>
+            <!--<button class="button button-clear button-primary" ng-click="modal.hide()">Cancel</button>-->
+           
+        </ion-header-bar>
+        <ion-content class="padding">
+            <div class="list">
+                <ion-checkbox ng-repeat="item in devList"
+                              ng-model="item.checkName"
+                              ng-checked="item.checkName"
+                              class="item-text-wrap">
+                    {{ item.NoteName }}
+                </ion-checkbox>
+            </div>
+        </ion-content>
+    </ion-modal-view>
+</script>

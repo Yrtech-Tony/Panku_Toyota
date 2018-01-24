@@ -1,0 +1,27 @@
+﻿<ion-view view-title="一汽丰田">
+    <ion-content class="">
+        <div class="list">
+            <label class="item item-input item-select">
+                <div class="input-label">
+                    项目
+                </div>
+                <select ng-model="project" ng-options="item.ProjectName for item in projects"></select>
+            </label>
+            <label class="item item-input">
+                <span class="input-label">经销商代码</span>
+                <input type="text" ng-model="viewState.shopCode" ng-change="checkShopName(viewState.shopCode);">
+            </label>
+            <label class="item item-input">
+                <span class="input-label">经销商名称</span>
+                <p>{{viewState.shopName}}</p>
+            </label>
+            <label class="item item-input">
+                <span class="input-label">密码</span>
+                <input type="password" ng-model="viewState.password">
+            </label>
+        </div>
+        <button class="button button-block button-positive" ng-click="login(viewState.shopCode,viewState.shopName,viewState.password,project.ProjectCode);">登录</button>
+        <!--<button class="button button-block button-calm" ng-click="createDir();">createDir</button>-->
+        <!--<img id="myImage" style="width: 100px;height: 100px;" ng-src="{{img_src}}" />-->
+    </ion-content>
+</ion-view>
